@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0107DBBCA779D42B39C9F6B1 /* libPods-GNBTask.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6DBBB2AEC092EE9D31CD3FB /* libPods-GNBTask.a */; };
+		E25C7E661ECA39DC00B468A4 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = E25C7E651ECA39DC00B468A4 /* 1.png */; };
 		E2A8BFA41EC9AFFF002EE819 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8BFA31EC9AFFF002EE819 /* main.m */; };
 		E2A8BFA71EC9AFFF002EE819 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2A8BFA61EC9AFFF002EE819 /* AppDelegate.m */; };
 		E2A8BFAD1EC9AFFF002EE819 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A8BFAB1EC9AFFF002EE819 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		03D550274A9814012AAEB576 /* Pods-GNBTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GNBTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GNBTask/Pods-GNBTask.debug.xcconfig"; sourceTree = "<group>"; };
 		39EA717FA6B24B2BB0B47011 /* Pods-GNBTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GNBTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-GNBTask/Pods-GNBTask.release.xcconfig"; sourceTree = "<group>"; };
 		C6DBBB2AEC092EE9D31CD3FB /* libPods-GNBTask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GNBTask.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E25C7E651ECA39DC00B468A4 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		E2A8BF9F1EC9AFFF002EE819 /* GNBTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GNBTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A8BFA31EC9AFFF002EE819 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E2A8BFA51EC9AFFF002EE819 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -70,6 +72,43 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E25C7E611ECA387000B468A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E2A8BFBF1EC9D7E3002EE819 /* ProductCollectionViewController.h */,
+				E2A8BFC01EC9D7E3002EE819 /* ProductCollectionViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		E25C7E621ECA387B00B468A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2A8BFC21EC9D908002EE819 /* productCollectionViewCell.h */,
+				E2A8BFC31EC9D908002EE819 /* productCollectionViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E25C7E631ECA388B00B468A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E2A8BFB91EC9C13E002EE819 /* Product.h */,
+				E2A8BFBA1EC9C13E002EE819 /* Product.m */,
+				E2A8BFBC1EC9C7C8002EE819 /* ImageDetails.h */,
+				E2A8BFBD1EC9C7C8002EE819 /* ImageDetails.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E25C7E641ECA389800B468A4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E25C7E651ECA39DC00B468A4 /* 1.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		E2A8BF961EC9AFFE002EE819 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +130,7 @@
 		E2A8BFA11EC9AFFF002EE819 /* GNBTask */ = {
 			isa = PBXGroup;
 			children = (
+				E25C7E641ECA389800B468A4 /* Resources */,
 				E2A8BFA51EC9AFFF002EE819 /* AppDelegate.h */,
 				E2A8BFA61EC9AFFF002EE819 /* AppDelegate.m */,
 				E2A8BFAB1EC9AFFF002EE819 /* Main.storyboard */,
@@ -98,14 +138,9 @@
 				E2A8BFB01EC9AFFF002EE819 /* LaunchScreen.storyboard */,
 				E2A8BFB31EC9AFFF002EE819 /* Info.plist */,
 				E2A8BFA21EC9AFFF002EE819 /* Supporting Files */,
-				E2A8BFB91EC9C13E002EE819 /* Product.h */,
-				E2A8BFBA1EC9C13E002EE819 /* Product.m */,
-				E2A8BFBC1EC9C7C8002EE819 /* ImageDetails.h */,
-				E2A8BFBD1EC9C7C8002EE819 /* ImageDetails.m */,
-				E2A8BFBF1EC9D7E3002EE819 /* ProductCollectionViewController.h */,
-				E2A8BFC01EC9D7E3002EE819 /* ProductCollectionViewController.m */,
-				E2A8BFC21EC9D908002EE819 /* productCollectionViewCell.h */,
-				E2A8BFC31EC9D908002EE819 /* productCollectionViewCell.m */,
+				E25C7E631ECA388B00B468A4 /* Model */,
+				E25C7E611ECA387000B468A4 /* Controller */,
+				E25C7E621ECA387B00B468A4 /* View */,
 			);
 			path = GNBTask;
 			sourceTree = "<group>";
@@ -179,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25C7E661ECA39DC00B468A4 /* 1.png in Resources */,
 				E2A8BFB21EC9AFFF002EE819 /* LaunchScreen.storyboard in Resources */,
 				E2A8BFAF1EC9AFFF002EE819 /* Assets.xcassets in Resources */,
 				E2A8BFAD1EC9AFFF002EE819 /* Main.storyboard in Resources */,

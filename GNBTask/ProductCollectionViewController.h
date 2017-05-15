@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "productCollectionViewCell.h"
 
-@interface ProductCollectionViewController : UICollectionViewController
-//<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ProductCollectionViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (nonatomic ,strong) NSArray *productsArray;
+@property (nonatomic ,strong) NSMutableArray *productsArray;
 
 @end

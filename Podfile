@@ -9,5 +9,5 @@ target 'GNBTask' do
 
 pod 'Mantle'
 pod 'AFNetworking', '~> 3.0'
-
+pod 'SDWebImage'
 end

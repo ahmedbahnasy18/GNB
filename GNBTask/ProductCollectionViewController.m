@@ -12,7 +12,7 @@
 #import "Product.h"
 #import "ImageDetails.h"
 
-@interface ProductCollectionViewController ()
+@interface ProductCollectionViewController ()<UICollectionViewDelegateFlowLayout>
 
 @end
 
@@ -22,32 +22,29 @@ static NSString * const reuseIdentifier = @"productCollectionViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadProducts:0];
     
-    [self loadFromURL];
+    [self.collectionView setPagingEnabled:YES];
     
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
+    UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
     
+    [collectionViewFlowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
+    self.collectionView.collectionViewLayout = collectionViewFlowLayout;
     
     
 }
 
--(void)loadFromURL {
-
-    NSURL *URL = [NSURL URLWithString:@"http://grapesnberries.getsandbox.com/products?count=10&from=0"];
+-(void)loadProducts:(int)page {
+    int pageSize=20;
+    page=page*pageSize;
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat: @"http://grapesnberries.getsandbox.com/products?count=%d&from=%d",pageSize,page]];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-  
-        self.productsArray = [Product deserializeProductFromJSON:responseObject];
-        
-        //[self.collectionView reloadData];
-        
-//        Product *p = self.productsArray[0];
-//        ImageDetails *im = (ImageDetails *)p.productImageDetails;
-//        NSLog(@"object %@",im.imageWidth);
-        
-        
-        
+        if(!self.productsArray)
+            self.productsArray=[NSMutableArray new];
+        [self.productsArray addObjectsFromArray:[Product deserializeProductFromJSON:responseObject]];
+        [self.collectionView reloadData];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -72,13 +69,11 @@ static NSString * const reuseIdentifier = @"productCollectionViewCell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete implementation, return the number of sections
     return 1 ;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
     return self.productsArray.count;
 }
 
@@ -91,6 +86,44 @@ static NSString * const reuseIdentifier = @"productCollectionViewCell";
     
     return cell;
 }
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
+    for (UICollectionViewCell *cell in [self.collectionView visibleCells]) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        NSUInteger lastIndex = [indexPath indexAtPosition:[indexPath length] - 1];
+        NSLog(@"Last Index: %lu",(unsigned long)lastIndex);
+        [self loadProducts:(int)self.productsArray.count/20];
+    }
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+
+minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    
+    return 0;
+    
+}
+
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+
+{
+    Product *p = self.productsArray[indexPath.row];
+    ImageDetails *im = (ImageDetails *)p.productImageDetails;
+    CGFloat width=CGRectGetWidth(collectionView.frame)/2.0f-10;
+    CGFloat height=im.imageHeight.doubleValue*(width/im.imageWidth.doubleValue);
+    return CGSizeMake(width,height);
+    
+    
+}
+
+
 
 #pragma mark <UICollectionViewDelegate>
 
